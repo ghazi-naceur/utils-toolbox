@@ -1,0 +1,13 @@
+{
+  "lastname":"Netero",
+  "name":"Isaac",
+  "age":"125 y.o",
+  "ignoreparam1":"ignored",
+  "ignoreparam2":"ignored",
+  "sublings":["Beyond","Netero"],
+  "deathDate":1399647200000,
+  "setAddtionalInfo":{
+    "occupation": "Hunter",
+    "Hobby":"Martial arts"
+  }
+}
