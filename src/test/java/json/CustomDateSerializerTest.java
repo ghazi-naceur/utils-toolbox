@@ -1,13 +1,18 @@
 package json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
 
-public class Main {
+/**
+ * Created by Ghazi Ennacer on 26/12/2017.
+ */
+public class CustomDateSerializerTest {
 
-    public static void main(String[] args) {
+    @Test
+    public void testSerialize(){
         ObjectMapper mapper = new ObjectMapper();
         try {
             Person person = mapper.readValue(new File("E:\\GitHubRepositories\\bungee-gum\\src\\main\\resources\\json\\input.json"), Person.class);
