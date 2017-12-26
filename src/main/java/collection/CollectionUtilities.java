@@ -16,8 +16,8 @@ public class CollectionUtilities {
         super();
     }
 
-    public static void anyMatch(Collection<String> strings, Predicate<String> string) {
-        strings.stream().anyMatch(string);
+    public static boolean anyMatch(Collection<String> strings, Predicate<String> string) {
+        return strings.stream().anyMatch(string);
     }
 
     public static <T> T[] fromCollectionToArray(final Collection<T> coll, final Class<T> type) {
