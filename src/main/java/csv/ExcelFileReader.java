@@ -22,12 +22,6 @@ public class ExcelFileReader {
 
     private static final String FILE_PATH = "E:\\GitHubRepositories\\bungee-gum\\src\\main\\resources\\csv\\persons.xlsx";
 
-    public static void main(String args[]) {
-
-        List studentList = getStudentsListFromExcel();
-        System.out.println(studentList);
-    }
-
     public static List getStudentsListFromExcel() {
         List studentList = new ArrayList();
         FileInputStream fis = null;
