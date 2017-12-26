@@ -28,7 +28,7 @@ public class ExcelFileReader {
         System.out.println(studentList);
     }
 
-    private static List getStudentsListFromExcel() {
+    public static List getStudentsListFromExcel() {
         List studentList = new ArrayList();
         FileInputStream fis = null;
         try {
