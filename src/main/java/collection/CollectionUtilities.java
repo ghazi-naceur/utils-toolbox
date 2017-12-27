@@ -1,11 +1,10 @@
 package collection;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * Created by Ghazi Ennacer on 05/04/2017.
@@ -51,4 +50,33 @@ public class CollectionUtilities {
         return sb.toString();
     }
 
+    public static <T> Set<T> toSet(T... tab){
+        Set<T> set = new HashSet<>();
+        Collections.addAll(set, tab);
+        return set;
+    }
+
+    public static <E, K> K get(final E key, final Map<E, ?> map) {
+        Object o = map.get(key);
+        if (Objects.isNull(o)) {
+            return null;
+        }
+        return (K) o;
+    }
+
+    public static <T> Collection<T> filter(final Collection<T> collection, final Predicate<T> filter) {
+        return collection.stream().filter(filter).collect(Collectors.toSet());
+    }
+
+    public static <K, V, U> Map<K, V> applyFunctionOnValues(final Function<U, V> function, final Map<K, U> map) {
+        Map<K, V> result = new HashMap<>();
+        map.forEach((key, value) -> result.put(key, function.apply(value)));
+        return result;
+    }
+
+    public static <K, V, U> Map<V, U> applyFunctionOnKeys(final Function<K, V> function, final Map<K, U> map) {
+        Map<V, U> result = new HashMap<>();
+        map.forEach((key, value) -> result.put(function.apply(key), value));
+        return result;
+    }
 }
