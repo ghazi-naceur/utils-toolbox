@@ -7,8 +7,11 @@ import java.nio.channels.Channels;
 import java.nio.channels.SeekableByteChannel;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.*;
-import java.util.function.Predicate;
+import java.nio.file.StandardCopyOption;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Optional;
 
 import static java.nio.file.StandardOpenOption.APPEND;
 import static java.nio.file.StandardOpenOption.CREATE;
@@ -22,11 +25,11 @@ public class FileUtilities {
         super();
     }
 
-    public static void createFolder(File folder){
+    public static void createFolder(File folder) {
         folder.mkdirs();
     }
 
-    public static boolean filesWithTheSameNames(File file, String name){
+    public static boolean filesWithTheSameNames(File file, String name) {
         String fileName = file.getName();
         String n = fileName.substring(0, fileName.lastIndexOf("."));
         return name.equals(n);
@@ -45,9 +48,9 @@ public class FileUtilities {
         return Files.readAllBytes(path);
     }
 
-    public static Collection<File> listFilesInFolder(File directory){
+    public static Collection<File> listFilesInFolder(File directory) {
         File[] files = directory.listFiles();
-        if(files != null){
+        if (files != null) {
             return Arrays.asList(files);
         }
         return Collections.EMPTY_SET;
@@ -58,7 +61,41 @@ public class FileUtilities {
         return Arrays.asList(files).stream().filter(f -> f.getName().equals(fileName)).findAny();
     }
 
-    public static Boolean delete(File file){
+    public static File renameFile(File file, String newName) {
+        try {
+            File f = new File(file.getParent(), newName);
+            Path path = Files.move(file.toPath(), f.toPath(), StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
+            return path.toFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static File moveFile(File source, File destination) {
+        destination.getParentFile().mkdirs();
+        try {
+            Path path = Files.move(source.toPath(), destination.toPath(),
+                    StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING);
+            return path.toFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static File copyFile(File source, File destination) {
+        destination.getParentFile().mkdirs();
+        try {
+            Path path = Files.copy(source.toPath(), destination.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            return path.toFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static Boolean delete(File file) {
         try {
             if (file.isDirectory()) {
                 File[] children = file.listFiles();
