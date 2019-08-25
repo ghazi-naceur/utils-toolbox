@@ -20,7 +20,7 @@ import java.util.List;
 public class ExcelFileReader {
 
 
-    private static final String FILE_PATH = "E:\\GitHubRepositories\\bungee-gum\\src\\main\\resources\\csv\\persons.xlsx";
+    private static final String FILE_PATH = "E:\\GitHubRepositories\\utils-toolbox\\src\\main\\resources\\csv\\persons.xlsx";
 
     public static List getStudentsListFromExcel() {
         List studentList = new ArrayList();

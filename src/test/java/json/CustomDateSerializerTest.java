@@ -15,8 +15,8 @@ public class CustomDateSerializerTest {
     public void testSerialize(){
         ObjectMapper mapper = new ObjectMapper();
         try {
-            Person person = mapper.readValue(new File("E:\\GitHubRepositories\\bungee-gum\\src\\main\\resources\\json\\input.json"), Person.class);
-            mapper.writeValue(new File("E:\\GitHubRepositories\\bungee-gum\\src\\main\\resources\\json\\output.json"), person);
+            Person person = mapper.readValue(new File("E:\\GitHubRepositories\\utils-toolbox\\src\\main\\resources\\json\\input.json"), Person.class);
+            mapper.writeValue(new File("E:\\GitHubRepositories\\utils-toolbox\\src\\main\\resources\\json\\output.json"), person);
             System.out.println(person);
         } catch (IOException e) {
             e.printStackTrace();
